@@ -1,0 +1,4 @@
+id	start	end	key	value
+1	0	1	debtrank	1
+1	2	3	debtrank	2
+1	0	3

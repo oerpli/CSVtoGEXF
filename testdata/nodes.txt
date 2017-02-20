@@ -1,0 +1,4 @@
+id	label	debtrank
+0	"Erste Bank"	0.123
+1	"Zweite Bank"	0.321
+2	"Dritte Bank"	1.231

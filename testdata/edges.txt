@@ -1,0 +1,4 @@
+source	target	weight	due	test
+0	1	0.25	1	true
+1	2	0.32	2	false
+2	0	0.32	2	false

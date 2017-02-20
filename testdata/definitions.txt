@@ -1,0 +1,5 @@
+title	edge	type
+debtrank	0	double
+due	1	integer
+test	1	boolean
+

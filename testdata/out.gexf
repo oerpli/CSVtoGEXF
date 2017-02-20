@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='utf-8'?>
+<gexf version="1.2"
+    xmlns="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xsi="http://www.gexf.net/1.2draft">
+    <graph defaultedgetype="directed" mode="dynamic">
+        <attributes class="node" mode="dynamic">
+            <attribute id="0" title="debtrank" type="double" />
+        </attributes>
+        <attributes class="edge" mode="dynamic">
+            <attribute id="1" title="due" type="integer" />
+            <attribute id="2" title="test" type="boolean" />
+        </attributes>
+        <nodes>
+            <node id="0" label="Erste Bank">
+                <attvalues>
+                    <attvalue for="0" value="0.123" />
+                </attvalues>
+            </node>
+            <node id="1" label="Zweite Bank">
+                <spells>
+                    <spell end="3" start="0" />
+                </spells>
+                <attvalues>
+                    <attvalue end="1" for="0" start="0" value="1" />
+                    <attvalue end="3" for="0" start="2" value="2" />
+                </attvalues>
+            </node>
+            <node id="2" label="Dritte Bank">
+                <attvalues>
+                    <attvalue for="0" value="1.231" />
+                </attvalues>
+            </node>
+        </nodes>
+        <edges>
+            <edge id="0" source="0" target="1" weight="0.25">
+                <spells>
+                    <spell end="3" start="0" />
+                </spells>
+                <attvalues>
+                    <attvalue for="2" value="true" />
+                    <attvalue end="1" for="1" start="0" value="1" />
+                    <attvalue end="3" for="1" start="2" value="2" />
+                </attvalues>
+            </edge>
+            <edge id="1" source="1" target="2" weight="0.32">
+                <spells>
+                    <spell end="4" start="0" />
+                </spells>
+                <attvalues>
+                    <attvalue for="1" value="2" />
+                    <attvalue for="2" value="false" />
+                </attvalues>
+            </edge>
+            <edge id="2" source="2" target="0" weight="0.32">
+                <spells>
+                    <spell end="4" start="2" />
+                </spells>
+                <attvalues>
+                    <attvalue for="1" value="2" />
+                    <attvalue for="2" value="false" />
+                </attvalues>
+            </edge>
+        </edges>
+    </graph>
+</gexf>
