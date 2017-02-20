@@ -17,3 +17,7 @@ And takes these optional arguments.
 In the testdata folder there are samples for all the different CSV files. If you have problems contact me on [twitter](https://twitter.com/oerpli)
 
 If neither edgespells or nodespells are given the resulting graph is assumed to be static. If spells are given for attributes any values provided for the same attribute in the node or edge list are discarded (this is because attributes without a start/end declaration must hold at all times and giving spells for those times would result in a critical error in Gephi.
+
+
+## Matlab support
+I intend to publish a set of matlab functions that output graphs in the desired format. This part is not yet finished. 
