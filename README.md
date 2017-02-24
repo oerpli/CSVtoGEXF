@@ -24,3 +24,7 @@ The matlab export functions are in the folder, depending on the path from where 
 Also note that currently the types of the optional attributes have to be defined (look at the gexf primer to see what types are allowed). I intend to write some auto detection sometime in the future.
 
 Exporting dynamic graphs does not work currently as I have no idea how people store their dynamic graphs in matlab. If you would like to use this feature drop me a message and I will see what I can do. 
+
+
+## Support for other languages
+In theory it should be quite easy to add some csv exporter for other languages that output csv files in the desired format for consumption by this script. You can open a pull request if you've done something like this for your language of choice. 
