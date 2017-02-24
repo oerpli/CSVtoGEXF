@@ -20,4 +20,7 @@ If neither edgespells or nodespells are given the resulting graph is assumed to 
 
 
 ## Matlab support
-I intend to publish a set of matlab functions that output graphs in the desired format. This part is not yet finished. 
+The matlab export functions are in the folder, depending on the path from where you call them you may need to adapt some paths in the `Export_Example.m` file. 
+Also note that currently the types of the optional attributes have to be defined (look at the gexf primer to see what types are allowed). I intend to write some auto detection sometime in the future.
+
+Exporting dynamic graphs does not work currently as I have no idea how people store their dynamic graphs in matlab. If you would like to use this feature drop me a message and I will see what I can do. 
