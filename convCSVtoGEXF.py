@@ -205,7 +205,7 @@ def readNodeSpells(file):
             Node.Get(key).AddSpell(row)
 #
 
-def WriteXML(edges,nodes, out = 'graph'):
+def WriteXML(edges,nodes, beautify, out = 'graph'):
     ns = "http://www.w3.org/2001/XMLSchema-instance"
     nsg = "http://www.gexf.net/1.2draft"
     # Configure one attribute with set()
@@ -220,22 +220,36 @@ def WriteXML(edges,nodes, out = 'graph'):
     graph.set('defaultedgetype',Def.Arcs)
     Def.DeclareAttributes(graph)
     nodesE = SubElement(graph,'nodes')
+    print("Writing Nodes")
     for node in nodes:
         node.xmlElement(nodesE)
     edgesE = SubElement(graph,'edges')
+    print("Writing Edges")
     for edge in edges:
         edge.xmlElement(edgesE)
-
     output = './tempgraph123123.xml'
-    tree = ET.ElementTree(root)
     out = "{}.gexf".format(out)
+    if not beautify:
+        print("Not beautifying, output: {}".format(out))
+        output = out
+    tree = ET.ElementTree(root)
     #tree.write("page.xml",xml_declaration=True,encoding='utf-8',method="xml",default_namespace=ns)
     xml = ET.tostring(root).decode("utf-8")
     tree.write(output, encoding="utf-8", xml_declaration=True, default_namespace=None, method="xml")
-    vkb.xml(output,out)
-    os.remove(output)
-    print("Writing graph to {}".format(out))
+    if beautify:
+        print("Beautifying")
+        vkb.xml(output,out)
+        os.remove(output)
+    print("Wrote graph to {}".format(out))
 #
+
+def str2bool(v):
+    if v.lower() in ('yes', 'true', 't', 'y', '1'):
+        return True
+    elif v.lower() in ('no', 'false', 'f', 'n', '0'):
+        return False
+    else:
+        raise argparse.ArgumentTypeError('Boolean value expected.')
 
 ## Parse arguments, read passed edge and node definitions and output gexf file
 parser = argparse.ArgumentParser(description='Please provide csv files with edges and nodes as well as an output filename')
@@ -246,6 +260,7 @@ parser.add_argument('-o', '--output', help='Where to save the graph. Default is 
 parser.add_argument('-se', '--spelledges', help='CSV file with spells of edges (source, target, start, end [, key, value])')
 parser.add_argument('-sn', '--spellnodes', help='CSV file with spells of nodes (id, start, end [, key, value])')
 parser.add_argument('-a', '--arcs', choices=['undirected','directed','mutual'], help='How to handle edges. Default is directed')
+parser.add_argument('-b', '--beautify', type=str2bool, nargs='?', const=False, default=False, help='Should the output be formatted? May take a long time. Default is off')
 
 args = parser.parse_args()
 
@@ -260,7 +275,9 @@ if args.spelledges is not None:
     edgespells = readEdgeSpells(args.spelledges)
     Def.Mode['edge'] = 'dynamic'
 Def.Arcs = args.arcs or 'directed'
+beauty = args.beautify
 
-WriteXML(edges, nodes, args.output or 'out')
+print("Writing XML")
+WriteXML(edges, nodes, beauty, args.output or 'out')
 
 print("Completed")
